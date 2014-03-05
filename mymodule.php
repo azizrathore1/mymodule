@@ -60,23 +60,31 @@ class MyModule extends Module{
 		return true;
 	}
   
+
+  // This function will be called each time the hook “LeftColumn” 
   public function hookLeftColumn($params){
 
     $languageId = (int) ($params['cookie']->id_lang);
     $categoriesData = Category::getCategories($languageId, $active = true);
     $homecategoriesData = Category::getHomeCategories($languageId, $active = true);
-   
+         
+    //then assign smarty these variables like $categoriesData & $homecategoriesData.
     $this->context->smarty->assign('homecategories', $homecategoriesData);
     $this->context->smarty->assign('langid', $languageId);
+
+    //So now, our function will be called,
+    // but we need to create the view to render what we want. 
+    //Create a tpl file called “mymodule.tpl” :
     return $this->display(__FILE__, 'mymodule.tpl');
 
 
     $this->context->smarty->assign(array( 
-      
+      //give the url for ajax query which we use it later 
       'my_module_name' => Configuration::get('MYMODULE_NAME'),
       'my_module_category' => $this->context->link->getModuleLink('mymodule', 'display'),
       'my_module_newproducts' => $this->context->link->getModuleLink('mymodule', 'newproducts'),
     //'my_module_link' => $this->context->link->getManufacturerLink('mymodule', 'manufacturer'),
+
     'my_module_message' => $this->l('This is a simple text message') // Do not forget to enclose your strings in the l() translation method
     )
     );
