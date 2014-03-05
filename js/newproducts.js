@@ -1,10 +1,11 @@
-<script type="text/javascript">
+(function(window, document, $, undefined){
+  $.ajaxSetup({
+    timeout: 10000
+  });
 
-$(document).ready(function(){
+  $(document).ready(function(){
   var valArray, val_cat;
-  
   //HOME CATEGORY
-  
   $("#category_val").change(function(){	
     valArray = $(this).val();
     $.ajax({
@@ -31,11 +32,11 @@ $("#subcategory_val").change(function(){
 });
 
 function getsubcategory(catid){
-  $.ajax({ 
+  $.ajax({
     url: '/modules/mymodule/ajaxNew.php?callFor=subcategory&category_id='+catid+"&langid="+{$langid},
     success: function(data){
       $("#subcatprodlist").html(data);
     }
   });
 }
-</script>
+})(window, document, jQuery);

@@ -29,6 +29,7 @@ public function setMedia() {
 	
 	//$this->addCSS(__PS_BASE_URI__ . 'modules/' . $this->module->name . '/css/' . $this->module->name . '.css');
 	//$this ->addJS(__PS_BASE_URI__ . 'modules/' . $this->module->name .'/js/eurostoresSuperSearch.js');  
+	$this ->addJS(__PS_BASE_URI__ . 'modules/' . $this->module->name .'/js/mymoduleresult.js');  
 }
 }
 
